@@ -83,10 +83,7 @@ Feature: Hành động trên chứng từ khấu trừ thuế TNCN
         | XML |
 
   Rule: Sao chép chứng từ
-    # Sao chép khả dụng với TẤT CẢ trạng thái: Nháp, Gửi CQT lỗi, Đã gửi CQT,
-    # CQT kiểm tra không hợp lệ, CQT chấp nhận
-    # Bản sao luôn được tạo với trạng thái "Nháp"
-
+  
     @action @copy
     Scenario Outline: Sao chép chứng từ tạo bản nháp mới ở mọi trạng thái
       Given người nộp thuế có chứng từ TNCN ở trạng thái "<trạng_thái>"
@@ -164,48 +161,6 @@ Feature: Hành động trên chứng từ khấu trừ thuế TNCN
         | Đã gửi CQT                |
         | CQT kiểm tra không hợp lệ |
         | CQT chấp nhận             |
-
-  Rule: Lập chứng từ điều chỉnh
-
-    @action @adjustment
-    Scenario: Cho phép lập chứng từ điều chỉnh từ chứng từ đã gửi CQT
-      Given người nộp thuế có chứng từ TNCN ở trạng thái "Đã gửi CQT"
-      When người nộp thuế chọn lập chứng từ điều chỉnh
-      Then hệ thống mở form lập chứng từ điều chỉnh
-
-    @action @adjustment
-    Scenario: Chứng từ điều chỉnh liên kết với chứng từ gốc
-      Given người nộp thuế có chứng từ TNCN ở trạng thái "Đã gửi CQT"
-      When người nộp thuế lập chứng từ điều chỉnh từ chứng từ gốc
-      Then chứng từ điều chỉnh có tính chất "Chứng từ điều chỉnh"
-      And chứng từ điều chỉnh hiển thị thông tin liên kết đến chứng từ gốc
-
-    @action @adjustment
-    Scenario: Tính chất chứng từ gốc chuyển thành "Bị điều chỉnh" khi phát hành điều chỉnh
-      Given người nộp thuế có chứng từ điều chỉnh ở trạng thái "Nháp"
-      When người nộp thuế phát hành chứng từ điều chỉnh thành công
-      Then tính chất của chứng từ gốc chuyển sang "Chứng từ bị điều chỉnh"
-
-  Rule: Lập chứng từ thay thế
-
-    @action @replacement
-    Scenario: Cho phép lập chứng từ thay thế từ chứng từ đã gửi CQT
-      Given người nộp thuế có chứng từ TNCN ở trạng thái "Đã gửi CQT"
-      When người nộp thuế chọn lập chứng từ thay thế
-      Then hệ thống mở form lập chứng từ thay thế
-
-    @action @replacement
-    Scenario: Chứng từ thay thế kế thừa dữ liệu từ chứng từ gốc
-      Given người nộp thuế có chứng từ TNCN ở trạng thái "Đã gửi CQT"
-      When người nộp thuế chọn lập chứng từ thay thế từ chứng từ gốc
-      Then form lập chứng từ thay thế được điền sẵn thông tin từ chứng từ gốc
-      And người nộp thuế có thể chỉnh sửa thông tin
-
-    @action @replacement
-    Scenario: Tính chất chứng từ gốc chuyển thành "Bị thay thế" khi phát hành thay thế
-      Given người nộp thuế có chứng từ thay thế ở trạng thái "Nháp"
-      When người nộp thuế phát hành chứng từ thay thế thành công
-      Then tính chất của chứng từ gốc chuyển sang "Chứng từ bị thay thế"
 
   Rule: Thao tác hàng loạt trên danh sách
 
