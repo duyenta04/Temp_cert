@@ -18,9 +18,9 @@ Feature: Hành động trên chứng từ khấu trừ thuế TNCN
 
       Examples:
         | trạng_thái                | hành_động                                                  |
-        | Nháp                      | Phát hành, Tải chứng từ, Xem, Sửa, Xóa                     |
+        | Nháp                      | Phát hành, Tải chứng từ, Sao chép, Xem, Sửa, Xóa           |
         | Gửi CQT lỗi               | Tải chứng từ, Sao chép, Xem                                |
-        | Đã gửi CQT                | Tải chứng từ, Sao chép, Điều chỉnh/Thay thế, Xem           |
+        | Đã gửi CQT                | Tải chứng từ, Sao chép, Điều chỉnh/Thay thế/TBSS, Xem      |
         | CQT kiểm tra không hợp lệ | Tải chứng từ, Sao chép, Xem                                |
         | CQT chấp nhận             | Gửi chứng từ cho KH, Tải chứng từ, Sao chép, Xem           |
 
