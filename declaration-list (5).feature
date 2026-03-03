@@ -94,24 +94,11 @@ Feature: Danh sách tờ khai đăng ký sử dụng chứng từ điện tử
 
   Rule: Trạng thái tờ khai được xác định theo thông điệp CQT trả về
     # Luồng trạng thái theo thông điệp:
-    # Tờ khai mới tạo                            → Nháp
     # Gửi Thông điệp 108 lên CQT                → Đã gửi CQT
     # CQT trả Thông điệp 110 - không tiếp nhận  → Gửi CQT lỗi
     # CQT trả Thông điệp 110 - tiếp nhận        → Chờ CQT duyệt
     # CQT trả Thông điệp 111 - không chấp nhận  → CQT không chấp nhận
     # CQT trả Thông điệp 111 - chấp nhận        → CQT chấp nhận
-
-    @api @status
-    Scenario: Trạng thái là "Nháp" khi tờ khai mới được tạo chưa gửi CQT
-      Given người nộp thuế đã tạo tờ khai mới
-      When người nộp thuế xem danh sách tờ khai
-      Then tờ khai mới hiển thị trạng thái "Nháp"
-
-    @api @status
-    Scenario: Trạng thái chuyển sang "Đã gửi CQT" sau khi gửi Thông điệp 108
-      Given người nộp thuế có tờ khai ở trạng thái "Nháp"
-      When hệ thống gửi dữ liệu tờ khai lên CQT qua Thông điệp 108 thành công
-      Then trạng thái tờ khai chuyển sang "Đã gửi CQT"
 
     @api @status
     Scenario: Trạng thái chuyển sang "Gửi CQT lỗi" khi CQT không tiếp nhận qua Thông điệp 110
